@@ -315,14 +315,12 @@
 
 .data-flow.top {
   top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
 }
 
 .data-flow.bottom {
   bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
 }
 
 .data-dot {

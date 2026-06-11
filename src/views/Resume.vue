@@ -2,13 +2,20 @@
   <div class="resume-page">
     <!-- 顶部导航 -->
     <header class="header">
-      <router-link to="/match" class="back-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="15,18 9,12 15,6"/>
-        </svg>
-        返回
-      </router-link>
-      <span class="header-title">完善简历</span>
+      <div class="header-left">
+        <router-link to="/match" class="back-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"/>
+          </svg>
+          返回
+        </router-link>
+        <span class="logo">BRIDGER</span>
+        <span class="header-title">完善简历</span>
+      </div>
+      <div class="header-right">
+        <span style="font-size: 13px; color: #64748B;">张三</span>
+        <div class="user-avatar">张</div>
+      </div>
     </header>
 
     <!-- 进度指示器 -->
@@ -351,8 +358,14 @@ const goToMatch = () => {
   padding: 16px 40px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .back-btn {
@@ -373,11 +386,36 @@ const goToMatch = () => {
   background: #EFF6FF;
 }
 
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #3B82F6;
+  letter-spacing: 2px;
+}
+
 .header-title {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: #0F172A;
-  letter-spacing: -0.02em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #E0E7FF, #C7D2FE);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #3B82F6;
+  font-size: 14px;
 }
 
 .progress-bar {
