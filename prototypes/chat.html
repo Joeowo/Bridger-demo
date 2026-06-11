@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>与 字节跳动 - 张HR 沟通 - BRIDGER</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #3B82F6;
+      --primary-dark: #2563EB;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --bg: #F9FAFB;
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+      --card-bg: #FFFFFF;
+      --border: #E5E7EB;
+      --success: #10B981;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 顶部导航 */
+    .header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover {
+      color: var(--primary);
+    }
+
+    .chat-title {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .hr-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #E0E7FF, #C7D2FE);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 14px;
+    }
+
+    /* 聊天区域 */
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      max-width: 80%;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.hr {
+      align-self: flex-start;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .message-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .message.hr .message-avatar {
+      background: linear-gradient(135deg, #E0E7FF, #C7D2FE);
+      color: var(--primary);
+    }
+
+    .message.user .message-avatar {
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      color: #D97706;
+    }
+
+    .message-content {
+      background: var(--card-bg);
+      padding: 12px 16px;
+      border-radius: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .message.hr .message-content {
+      border-top-left-radius: 4px;
+    }
+
+    .message.user .message-content {
+      background: var(--primary);
+      color: white;
+      border-top-right-radius: 4px;
+    }
+
+    .message-time {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .message.user .message-time {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* 正在输入提示 */
+    .typing-indicator {
+      display: flex;
+      gap: 12px;
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+
+    .typing-bubbles {
+      background: var(--card-bg);
+      padding: 12px 16px;
+      border-radius: 16px;
+      border-top-left-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .typing-bubbles span {
+      width: 8px;
+      height: 8px;
+      background: var(--text-secondary);
+      border-radius: 50%;
+      animation: typing 1.4s ease-in-out infinite;
+    }
+
+    .typing-bubbles span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-bubbles span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+      30% {
+        transform: translateY(-8px);
+        opacity: 1;
+      }
+    }
+
+    /* 输入区域 */
+    .input-area {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 16px 24px;
+      flex-shrink: 0;
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .input-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border-radius: 24px;
+      padding: 10px 16px;
+    }
+
+    .input-box input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .input-box input::placeholder {
+      color: #9CA3AF;
+    }
+
+    .send-btn {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .send-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .send-btn svg {
+      width: 18px;
+      height: 18px;
+      color: white;
+    }
+
+    /* 握手按钮区 */
+    .handshake-section {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 16px 24px;
+      flex-shrink: 0;
+    }
+
+    .handshake-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .handshake-btn.initial {
+      background: var(--accent);
+      color: white;
+    }
+
+    .handshake-btn.initial:hover {
+      background: var(--accent-hover);
+    }
+
+    .handshake-btn.sent {
+      background: var(--bg);
+      color: var(--text-secondary);
+      cursor: default;
+    }
+
+    .handshake-btn.success {
+      background: linear-gradient(135deg, #DCFCE7, #D1FAE5);
+      color: var(--success);
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .chat-area {
+        padding: 16px;
+      }
+
+      .message {
+        max-width: 90%;
+      }
+
+      .input-area, .handshake-section {
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="header">
+    <a href="company-detail.html" class="back-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15,18 9,12 15,6"/>
+      </svg>
+      返回
+    </a>
+    <span class="chat-title">与 字节跳动 - 张HR 沟通</span>
+    <div class="hr-avatar">张</div>
+  </header>
+
+  <!-- 聊天区域 -->
+  <div class="chat-area">
+    <!-- HR消息 -->
+    <div class="message hr">
+      <div class="message-avatar">张</div>
+      <div class="message-content">
+        <div>您好，我看了您的简历，觉得您的背景和我们岗位很匹配</div>
+        <div class="message-time">10:30</div>
+      </div>
+    </div>
+
+    <!-- 用户消息 -->
+    <div class="message user">
+      <div class="message-avatar">张</div>
+      <div class="message-content">
+        <div>谢谢关注，想了解下这个岗位的主要工作内容</div>
+        <div class="message-time">10:32</div>
+      </div>
+    </div>
+
+    <!-- HR消息 -->
+    <div class="message hr">
+      <div class="message-avatar">张</div>
+      <div class="message-content">
+        <div>主要是负责抖音推荐系统的后端开发，处理高并发场景</div>
+        <div class="message-time">10:35</div>
+      </div>
+    </div>
+
+    <!-- 用户消息 -->
+    <div class="message user">
+      <div class="message-avatar">张</div>
+      <div class="message-content">
+        <div>听起来很有挑战性，我对这个岗位很感兴趣</div>
+        <div class="message-time">10:36</div>
+      </div>
+    </div>
+
+    <!-- 正在输入提示 -->
+    <div class="typing-indicator">
+      <div class="message-avatar">张</div>
+      <div class="typing-bubbles">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 输入区域 -->
+  <div class="input-area">
+    <div class="input-wrapper">
+      <div class="input-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8,14s1.5,2 4,2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/>
+          <line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+        <input type="text" placeholder="输入消息...">
+      </div>
+      <button class="send-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22,2 15,22 11,13 2,9"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 握手按钮区 -->
+  <div class="handshake-section">
+    <button class="handshake-btn initial" onclick="handleHandshake(this)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M17,21v-2a4,4 0 0,0-4-4H5a4,4 0 0,0-4,4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23,21v-2a4,4 0 0,0-3-3.9M16,3.1a4,4 0 0,1,0,7.8"/>
+      </svg>
+      握手约面
+    </button>
+  </div>
+
+  <script>
+    function handleHandshake(btn) {
+      if (btn.classList.contains('initial')) {
+        // 发送握手请求
+        btn.classList.remove('initial');
+        btn.classList.add('sent');
+        btn.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12,6 12,12 16,14"/>
+          </svg>
+          已发送握手请求
+        `;
+
+        // 模拟收到回复
+        setTimeout(() => {
+          btn.classList.remove('sent');
+          btn.classList.add('success');
+          btn.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22,11.08V12a10,10 0 1,1-5.93-9.14"/>
+              <polyline points="22,4 12,14.01 9,11.01"/>
+            </svg>
+            握手成功，可约面
+          `;
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>
