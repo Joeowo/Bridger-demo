@@ -13,8 +13,7 @@
     <div class="container">
       <!-- Hero区域 -->
       <div class="hero">
-        <h1 class="slogan">让求职更精准</h1>
-
+        <h1 class="slogan">桥可·让求职更精准</h1>
         <div class="hero-illustration">
           <!-- 求职者 -->
           <div class="person-card">
