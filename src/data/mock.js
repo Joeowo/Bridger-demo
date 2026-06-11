@@ -3,6 +3,163 @@
 
 // ==================== 企业数据 ====================
 export const companies = [
+  // 优质中小厂（展示精确匹配能力）
+  {
+    id: "shopee-001",
+    name: "Shopee",
+    logo: "/logos/shopee.png",
+    scale: "1000-10000人",
+    industry: "互联网电商",
+    location: "深圳/上海",
+    description: "东南亚领先的电商平台，业务覆盖全球多个国家和地区",
+    jobs: [
+      {
+        id: "shopee-job-001",
+        title: "Java后端开发工程师",
+        salary: "30-50K",
+        experience: "3-5年",
+        location: "深圳",
+        requirements: [
+          "扎实的Java基础，熟悉高并发、分布式系统",
+          "熟悉Spring Boot、微服务架构",
+          "有电商业务经验优先",
+          "英语或印尼语能力加分",
+          "有技术热情和学习能力"
+        ],
+        responsibilities: [
+          "负责电商平台核心业务系统开发",
+          "参与系统架构设计和性能优化",
+          "支持大促活动的高并发场景"
+        ],
+        benefits: ["有竞争力薪资", "股票期权", "弹性工作", "免费三餐", "年度体检"]
+      }
+    ]
+  },
+
+  {
+    id: "lazada-001",
+    name: "Lazada",
+    logo: "/logos/lazada.png",
+    scale: "1000-10000人",
+    industry: "互联网电商",
+    location: "杭州/深圳",
+    description: "阿里巴巴旗下东南亚电商平台，业务增长迅速",
+    jobs: [
+      {
+        id: "lazada-job-001",
+        title: "后端开发工程师",
+        salary: "28-45K",
+        experience: "3-5年",
+        location: "杭州",
+        requirements: [
+          "Java技术栈扎实",
+          "熟悉电商业务模式",
+          "有高流量系统经验",
+          "良好的沟通协作能力"
+        ],
+        responsibilities: [
+          "负责 Lazada 核心交易链路开发",
+          "参与跨境支付系统建设",
+          "优化系统性能和稳定性"
+        ],
+        benefits: ["薪资优厚", "阿里系福利", "股票激励", "培训机会"]
+      }
+    ]
+  },
+
+  {
+    id: "grab-001",
+    name: "Grab",
+    logo: "/logos/grab.png",
+    scale: "5000+人",
+    industry: "互联网",
+    location: "新加坡/北京",
+    description: "东南亚超级应用，涵盖出行、外卖、支付等多个领域",
+    jobs: [
+      {
+        id: "grab-job-001",
+        title: "Senior Java Engineer",
+        salary: "35-60K",
+        experience: "5年以上",
+        location: "新加坡",
+        requirements: [
+          "5年以上Java开发经验",
+          "熟悉分布式系统设计",
+          "有出行/外卖行业经验优先",
+          "英语流利"
+        ],
+        responsibilities: [
+          "负责Grab核心服务架构设计",
+          "主导技术攻关和创新",
+          "指导团队技术成长"
+        ],
+        benefits: ["高薪资包", "新加坡工作签证", "股票期权", "国际团队"]
+      }
+    ]
+  },
+
+  {
+    id: "stripe-001",
+    name: "Stripe",
+    logo: "/logos/stripe.png",
+    scale: "5000+人",
+    industry: "FinTech",
+    location: "远程/新加坡",
+    description: "全球领先的支付基础设施公司，为开发者提供支付解决方案",
+    jobs: [
+      {
+        id: "stripe-job-001",
+        title: "Backend Engineer",
+        salary: "40-70K",
+        experience: "3-5年",
+        location: "远程",
+        requirements: [
+          "熟练掌握 Ruby 或 Java",
+          "对支付系统有深入理解",
+          "注重代码质量和系统可靠性",
+          "优秀的工程素养"
+        ],
+        responsibilities: [
+          "构建全球支付基础设施",
+          "确保系统高可用和安全性",
+          "参与开源项目建设"
+        ],
+        benefits: ["顶级薪资", "完全远程", "股票期权", "学习预算", "家庭福利"]
+      }
+    ]
+  },
+
+  {
+    id: "notion-001",
+    name: "Notion",
+    logo: "/logos/notion.png",
+    scale: "500-1000人",
+    industry: "SaaS",
+    location: "旧金山/远程",
+    description: "一体化工作空间平台，文档、笔记、知识管理工具",
+    jobs: [
+      {
+        id: "notion-job-001",
+        title: "Full-stack Engineer",
+        salary: "35-55K",
+        experience: "3-5年",
+        location: "远程",
+        requirements: [
+          "熟练使用 React/TypeScript",
+          "熟悉 Node.js 或 Java 后端",
+          "注重产品体验和细节",
+          "有工具类产品开发经验"
+        ],
+        responsibilities: [
+          "开发 Notion 核心功能",
+          "优化产品性能和用户体验",
+          "参与产品功能规划"
+        ],
+        benefits: ["高薪", "远程优先", "股票期权", "学习基金", "灵活休假"]
+      }
+    ]
+  },
+
   {
     id: "byte-001",
     name: "字节跳动",
@@ -416,6 +573,92 @@ export const companies = [
 
 // ==================== 匹配结果数据 ====================
 export const matchResults = [
+  // 优质中小厂匹配（展示精确匹配能力，置顶显示）
+  {
+    id: "match-shopee-001",
+    companyId: "shopee-001",
+    jobId: "shopee-job-001",
+    matchScore: 92,
+    aiAnalysis: {
+      strongPoints: [
+        "电商项目经验高度契合 Shopee 核心业务",
+        "Java技能与技术栈完美匹配",
+        "3年经验正是 Shopee 期待的中坚力量",
+        "有过高并发电商系统开发经验"
+      ],
+      suggestions: [
+        "准备东南亚电商业务场景相关问题",
+        "了解 Shopee 技术架构（Go + Java）",
+        "准备跨境支付相关技术方案",
+        "英语/印尼语基础会是加分项"
+      ]
+    },
+    recentHires: "近期录用3人，平均3.5年经验，均来自电商背景"
+  },
+  {
+    id: "match-lazada-001",
+    companyId: "lazada-001",
+    jobId: "lazada-job-001",
+    matchScore: 90,
+    aiAnalysis: {
+      strongPoints: [
+        "电商订单系统经验与 Lazada 核心业务高度匹配",
+        "熟悉 Java 微服务架构",
+        "有阿里巴巴生态技术储备",
+        "杭州/深圳地理位置符合期望"
+      ],
+      suggestions: [
+        "重点准备分布式事务和一致性方案",
+        "了解阿里系中件件在 Lazada 的应用",
+        "准备跨境电商业务场景问题"
+      ]
+    },
+    recentHires: "近期录用2人，均来自国内大厂电商部门"
+  },
+  {
+    id: "match-stripe-001",
+    companyId: "stripe-001",
+    jobId: "stripe-job-001",
+    matchScore: 88,
+    aiAnalysis: {
+      strongPoints: [
+        "技术基础扎实，系统设计能力强",
+        "对支付系统架构有理解（简历中有相关项目）",
+        "注重代码质量符合 Stripe 工程文化",
+        "英语能力支持国际化团队协作"
+      ],
+      suggestions: [
+        "深入学习支付系统安全相关技术",
+        "准备分布式系统设计案例",
+        "了解 Stripe 支付 API 和架构",
+        "强化工程最佳实践相关准备"
+      ]
+    },
+    recentHires: "近期录用1人，4年经验，来自国内头部支付公司"
+  },
+  {
+    id: "match-notion-001",
+    companyId: "notion-001",
+    jobId: "notion-job-001",
+    matchScore: 86,
+    aiAnalysis: {
+      strongPoints: [
+        "全栈技术能力符合 Notion 需求",
+        "有工具类产品开发经验",
+        "注重用户体验和产品细节",
+        "学习能力强，适合快速迭代团队"
+      ],
+      suggestions: [
+        "准备 Notion 产品相关技术问题",
+        "了解协作工具的架构设计",
+        "强化前端框架和性能优化知识",
+        "准备远程工作经验分享"
+      ]
+    },
+    recentHires: "近期录用2人，平均3年经验，均来自 SaaS 产品公司"
+  },
+
+  // 大厂匹配结果
   {
     id: "match-001",
     companyId: "byte-001",
@@ -718,6 +961,28 @@ export const sampleResume = {
 
 // ==================== 聊天消息数据 ====================
 export const chatMessages = {
+  "shopee-001": [
+    { id: 1, sender: "hr", content: "Hello！看到了您在电商系统的经验，非常契合 Shopee 的业务", time: "11:00" },
+    { id: 2, sender: "user", content: "您好，想了解一下 Shopee 的技术团队情况", time: "11:02" },
+    { id: 3, sender: "hr", content: "Shopee 技术团队来自阿里、腾讯等大厂，技术氛围很好", time: "11:05" },
+    { id: 4, sender: "user", content: "听起来很不错，我对这个职位很感兴趣", time: "11:06" },
+    { id: 5, sender: "hr", content: "太好了！我可以帮你安排技术面，请问你英语水平如何？", time: "11:08", typing: true }
+  ],
+  "lazada-001": [
+    { id: 1, sender: "hr", content: "你好，你的电商订单系统经验正是我们需要的", time: "14:30" },
+    { id: 2, sender: "user", content: "您好，想了解 Lazada 的业务规模和技术架构", time: "14:32" },
+    { id: 3, sender: "hr", content: "我们是阿里系公司，业务覆盖东南亚6个国家，日均订单千万级", time: "14:35" }
+  ],
+  "stripe-001": [
+    { id: 1, sender: "hr", content: "Hi，看到了你的系统设计能力，对 Stripe 很有兴趣吗？", time: "09:00" },
+    { id: 2, sender: "user", content: "您好，Stripe 在支付领域很有名，我想了解更多", time: "09:02" },
+    { id: 3, sender: "hr", content: "Stripe 处理全球支付业务，技术挑战非常大，而且我们支持远程办公", time: "09:05" }
+  ],
+  "notion-001": [
+    { id: 1, sender: "hr", content: "你好，看到你有工具类产品的开发经验，非常符合 Notion", time: "16:00" },
+    { id: 2, sender: "user", content: "您好，Notion 的产品我很喜欢使用", time: "16:02" },
+    { id: 3, sender: "hr", content: "Notion 工程文化非常棒，我们非常注重代码质量和产品细节", time: "16:05" }
+  ],
   "byte-001": [
     { id: 1, sender: "hr", content: "您好，我看了您的简历，觉得您的背景和我们岗位很匹配", time: "10:30" },
     { id: 2, sender: "user", content: "谢谢关注，想了解下这个岗位的主要工作内容", time: "10:32" },
@@ -739,6 +1004,10 @@ export const chatMessages = {
 
 // ==================== 握手状态数据 ====================
 export const handshakeStatus = {
+  "shopee-001": "initial",
+  "lazada-001": "initial",
+  "stripe-001": "initial",
+  "notion-001": "initial",
   "byte-001": "success",  // 初始 | sent | success
   "ali-001": "sent",
   "tencent-001": "initial",
